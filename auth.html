@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoVPN - Sign In/Sign Up</title>
+    
+    <style>
+        /* Additional styles for the forms */
+        .auth-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+        }
+        .auth-form {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .auth-form h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .auth-form input {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+        .auth-form button {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .auth-form button:hover {
+            background-color: #0056b3;
+        }
+        .auth-form p {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .auth-form a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-form" id="signInForm">
+            <h2>Sign In</h2>
+            <form id="loginForm">
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button type="submit">Sign In</button>
+            </form>
+            <p>Don't have an account? <a href="#" id="showSignUp">Sign Up</a></p>
+        </div>
+
+        <div class="auth-form" id="signUpForm" style="display: none;">
+            <h2>Sign Up</h2>
+            <form id="registerForm">
+                <input type="text" id="registerName" placeholder="Full Name" required>
+                <input type="email" id="registerEmail" placeholder="Email" required>
+                <input type="password" id="registerPassword" placeholder="Password" required>
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="#" id="showSignIn">Sign In</a></p>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for form switching and basic validation
+        const signInForm = document.getElementById('signInForm');
+        const signUpForm = document.getElementById('signUpForm');
+        const showSignUp = document.getElementById('showSignUp');
+        const showSignIn = document.getElementById('showSignIn');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+
+        showSignUp.addEventListener('click', (e) => {
+            e.preventDefault();
+            signInForm.style.display = 'none';
+            signUpForm.style.display = 'block';
+        });
+
+        showSignIn.addEventListener('click', (e) => {
+            e.preventDefault();
+            signUpForm.style.display = 'none';
+            signInForm.style.display = 'block';
+        });
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            console.log('Login attempt:', { email, password });
+            // send this data to your server for authentication
+            alert('Login functionality would be implemented here.');
+        });
+
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            console.log('Registration attempt:', { name, email, password });
+            //  send this data to your server to create a new account
+            alert('Registration functionality would be implemented here.');
+        });
+        // Check if the URL has a #signup hash
+if (window.location.hash === '#signup') {
+    signInForm.style.display = 'none';
+    signUpForm.style.display = 'block';
+}
+    </script>
+</body>
+</html>
